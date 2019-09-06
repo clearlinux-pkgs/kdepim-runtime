@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : kdepim-runtime
-Version  : 19.08.0
-Release  : 1
-URL      : https://download.kde.org/stable/applications/19.08.0/src/kdepim-runtime-19.08.0.tar.xz
-Source0  : https://download.kde.org/stable/applications/19.08.0/src/kdepim-runtime-19.08.0.tar.xz
-Source1 : https://download.kde.org/stable/applications/19.08.0/src/kdepim-runtime-19.08.0.tar.xz.sig
+Version  : 19.08.1
+Release  : 2
+URL      : https://download.kde.org/stable/applications/19.08.1/src/kdepim-runtime-19.08.1.tar.xz
+Source0  : https://download.kde.org/stable/applications/19.08.1/src/kdepim-runtime-19.08.1.tar.xz
+Source1 : https://download.kde.org/stable/applications/19.08.1/src/kdepim-runtime-19.08.1.tar.xz.sig
 Summary  : Extends the functionality of kdepim
 Group    : Development/Tools
 License  : AGPL-3.0 BSD-2-Clause GPL-2.0 GPL-3.0 LGPL-2.1 LGPL-3.0
@@ -102,14 +102,14 @@ locales components for the kdepim-runtime package.
 
 
 %prep
-%setup -q -n kdepim-runtime-19.08.0
+%setup -q -n kdepim-runtime-19.08.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1565930422
+export SOURCE_DATE_EPOCH=1567781275
 mkdir -p clr-build
 pushd clr-build
 # -Werror is for werrorists
@@ -126,7 +126,7 @@ make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1565930422
+export SOURCE_DATE_EPOCH=1567781275
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kdepim-runtime
 cp COPYING %{buildroot}/usr/share/package-licenses/kdepim-runtime/COPYING
@@ -196,6 +196,8 @@ popd
 /usr/bin/akonadi_ical_resource
 /usr/bin/akonadi_icaldir_resource
 /usr/bin/akonadi_imap_resource
+/usr/bin/akonadi_kalarm_dir_resource
+/usr/bin/akonadi_kalarm_resource
 /usr/bin/akonadi_maildir_resource
 /usr/bin/akonadi_maildispatcher_agent
 /usr/bin/akonadi_mbox_resource
@@ -248,6 +250,8 @@ popd
 /usr/share/akonadi/agents/icaldirresource.desktop
 /usr/share/akonadi/agents/icalresource.desktop
 /usr/share/akonadi/agents/imapresource.desktop
+/usr/share/akonadi/agents/kalarmdirresource.desktop
+/usr/share/akonadi/agents/kalarmresource.desktop
 /usr/share/akonadi/agents/maildirresource.desktop
 /usr/share/akonadi/agents/maildispatcheragent.desktop
 /usr/share/akonadi/agents/mboxresource.desktop
@@ -335,21 +339,22 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libakonadi-filestore.so.5
-/usr/lib64/libakonadi-filestore.so.5.12.0
+/usr/lib64/libakonadi-filestore.so.5.12.1
 /usr/lib64/libakonadi-singlefileresource.so.5
-/usr/lib64/libakonadi-singlefileresource.so.5.12.0
+/usr/lib64/libakonadi-singlefileresource.so.5.12.1
 /usr/lib64/libfolderarchivesettings.so.5
-/usr/lib64/libfolderarchivesettings.so.5.12.0
+/usr/lib64/libfolderarchivesettings.so.5.12.1
 /usr/lib64/libkmindexreader.so.5
-/usr/lib64/libkmindexreader.so.5.12.0
+/usr/lib64/libkmindexreader.so.5.12.1
 /usr/lib64/libmaildir.so.5
-/usr/lib64/libmaildir.so.5.12.0
+/usr/lib64/libmaildir.so.5.12.1
 /usr/lib64/qt5/plugins/akonadi/config/akonotesconfig.so
 /usr/lib64/qt5/plugins/akonadi/config/birthdaysconfig.so
 /usr/lib64/qt5/plugins/akonadi/config/contactsconfig.so
 /usr/lib64/qt5/plugins/akonadi/config/facebookconfig.so
 /usr/lib64/qt5/plugins/akonadi/config/icalconfig.so
 /usr/lib64/qt5/plugins/akonadi/config/icaldirconfig.so
+/usr/lib64/qt5/plugins/akonadi/config/kalarmconfig.so
 /usr/lib64/qt5/plugins/akonadi/config/maildirconfig.so
 /usr/lib64/qt5/plugins/akonadi/config/maildispatcherconfig.so
 /usr/lib64/qt5/plugins/akonadi/config/mboxconfig.so
