@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : kdepim-runtime
-Version  : 19.08.3
-Release  : 4
-URL      : https://download.kde.org/stable/applications/19.08.3/src/kdepim-runtime-19.08.3.tar.xz
-Source0  : https://download.kde.org/stable/applications/19.08.3/src/kdepim-runtime-19.08.3.tar.xz
-Source1 : https://download.kde.org/stable/applications/19.08.3/src/kdepim-runtime-19.08.3.tar.xz.sig
+Version  : 19.12.0
+Release  : 5
+URL      : https://download.kde.org/stable/release-service/19.12.0/src/kdepim-runtime-19.12.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/19.12.0/src/kdepim-runtime-19.12.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/19.12.0/src/kdepim-runtime-19.12.0.tar.xz.sig
 Summary  : Extends the functionality of kdepim
 Group    : Development/Tools
 License  : AGPL-3.0 BSD-2-Clause GPL-2.0 GPL-3.0 LGPL-2.1 LGPL-3.0
@@ -23,6 +23,7 @@ BuildRequires : akonadi-contacts-dev
 BuildRequires : akonadi-dev
 BuildRequires : akonadi-mime-dev
 BuildRequires : akonadi-notes-dev
+BuildRequires : boost-dev
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : extra-cmake-modules pkgconfig(libsasl2)
@@ -102,14 +103,15 @@ locales components for the kdepim-runtime package.
 
 
 %prep
-%setup -q -n kdepim-runtime-19.08.3
+%setup -q -n kdepim-runtime-19.12.0
+cd %{_builddir}/kdepim-runtime-19.12.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1573530958
+export SOURCE_DATE_EPOCH=1576601861
 mkdir -p clr-build
 pushd clr-build
 # -Werror is for werrorists
@@ -126,17 +128,17 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1573530958
+export SOURCE_DATE_EPOCH=1576601861
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kdepim-runtime
-cp %{_builddir}/kdepim-runtime-19.08.3/COPYING %{buildroot}/usr/share/package-licenses/kdepim-runtime/7c203dee3a03037da436df03c4b25b659c073976
-cp %{_builddir}/kdepim-runtime-19.08.3/COPYING.LIB %{buildroot}/usr/share/package-licenses/kdepim-runtime/9a1929f4700d2407c70b507b3b2aaf6226a9543c
-cp %{_builddir}/kdepim-runtime-19.08.3/COPYING.agpl3 %{buildroot}/usr/share/package-licenses/kdepim-runtime/4c665f87b5dc2e7d26279c4b48968d085e1ace32
-cp %{_builddir}/kdepim-runtime-19.08.3/COPYING.gpl3 %{buildroot}/usr/share/package-licenses/kdepim-runtime/31a3d460bb3c7d98845187c716a30db81c44b615
-cp %{_builddir}/kdepim-runtime-19.08.3/resources/kolab/pimkolab/COPYING %{buildroot}/usr/share/package-licenses/kdepim-runtime/8ccafa97d7e7373343b2ce9fd14325720002fd6d
-cp %{_builddir}/kdepim-runtime-19.08.3/resources/kolab/pimkolab/COPYING.LIB %{buildroot}/usr/share/package-licenses/kdepim-runtime/e6ce17111fff24ac88c21978b098b9fffcdee421
-cp %{_builddir}/kdepim-runtime-19.08.3/resources/kolab/pimkolab/COPYING.lgplv3 %{buildroot}/usr/share/package-licenses/kdepim-runtime/f45ee1c765646813b442ca58de72e20a64a7ddba
-cp %{_builddir}/kdepim-runtime-19.08.3/resources/tomboynotes/o2/LICENSE %{buildroot}/usr/share/package-licenses/kdepim-runtime/d1199253fd73ffa134ea99cd70609a908c3bc5b9
+cp %{_builddir}/kdepim-runtime-19.12.0/COPYING %{buildroot}/usr/share/package-licenses/kdepim-runtime/7c203dee3a03037da436df03c4b25b659c073976
+cp %{_builddir}/kdepim-runtime-19.12.0/COPYING.LIB %{buildroot}/usr/share/package-licenses/kdepim-runtime/9a1929f4700d2407c70b507b3b2aaf6226a9543c
+cp %{_builddir}/kdepim-runtime-19.12.0/COPYING.agpl3 %{buildroot}/usr/share/package-licenses/kdepim-runtime/4c665f87b5dc2e7d26279c4b48968d085e1ace32
+cp %{_builddir}/kdepim-runtime-19.12.0/COPYING.gpl3 %{buildroot}/usr/share/package-licenses/kdepim-runtime/31a3d460bb3c7d98845187c716a30db81c44b615
+cp %{_builddir}/kdepim-runtime-19.12.0/resources/kolab/pimkolab/COPYING %{buildroot}/usr/share/package-licenses/kdepim-runtime/8ccafa97d7e7373343b2ce9fd14325720002fd6d
+cp %{_builddir}/kdepim-runtime-19.12.0/resources/kolab/pimkolab/COPYING.LIB %{buildroot}/usr/share/package-licenses/kdepim-runtime/e6ce17111fff24ac88c21978b098b9fffcdee421
+cp %{_builddir}/kdepim-runtime-19.12.0/resources/kolab/pimkolab/COPYING.lgplv3 %{buildroot}/usr/share/package-licenses/kdepim-runtime/f45ee1c765646813b442ca58de72e20a64a7ddba
+cp %{_builddir}/kdepim-runtime-19.12.0/resources/tomboynotes/o2/LICENSE %{buildroot}/usr/share/package-licenses/kdepim-runtime/d1199253fd73ffa134ea99cd70609a908c3bc5b9
 pushd clr-build
 %make_install
 popd
@@ -190,7 +192,6 @@ popd
 /usr/bin/akonadi_davgroupware_resource
 /usr/bin/akonadi_ews_resource
 /usr/bin/akonadi_ewsmta_resource
-/usr/bin/akonadi_facebook_resource
 /usr/bin/akonadi_googlecalendar_resource
 /usr/bin/akonadi_googlecontacts_resource
 /usr/bin/akonadi_ical_resource
@@ -244,7 +245,6 @@ popd
 /usr/share/akonadi/agents/davgroupwareresource.desktop
 /usr/share/akonadi/agents/ewsmtaresource.desktop
 /usr/share/akonadi/agents/ewsresource.desktop
-/usr/share/akonadi/agents/facebookresource.desktop
 /usr/share/akonadi/agents/googlecalendarresource.desktop
 /usr/share/akonadi/agents/googlecontactsresource.desktop
 /usr/share/akonadi/agents/icaldirresource.desktop
@@ -339,19 +339,18 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libakonadi-filestore.so.5
-/usr/lib64/libakonadi-filestore.so.5.12.3
+/usr/lib64/libakonadi-filestore.so.5.13.0
 /usr/lib64/libakonadi-singlefileresource.so.5
-/usr/lib64/libakonadi-singlefileresource.so.5.12.3
+/usr/lib64/libakonadi-singlefileresource.so.5.13.0
 /usr/lib64/libfolderarchivesettings.so.5
-/usr/lib64/libfolderarchivesettings.so.5.12.3
+/usr/lib64/libfolderarchivesettings.so.5.13.0
 /usr/lib64/libkmindexreader.so.5
-/usr/lib64/libkmindexreader.so.5.12.3
+/usr/lib64/libkmindexreader.so.5.13.0
 /usr/lib64/libmaildir.so.5
-/usr/lib64/libmaildir.so.5.12.3
+/usr/lib64/libmaildir.so.5.13.0
 /usr/lib64/qt5/plugins/akonadi/config/akonotesconfig.so
 /usr/lib64/qt5/plugins/akonadi/config/birthdaysconfig.so
 /usr/lib64/qt5/plugins/akonadi/config/contactsconfig.so
-/usr/lib64/qt5/plugins/akonadi/config/facebookconfig.so
 /usr/lib64/qt5/plugins/akonadi/config/icalconfig.so
 /usr/lib64/qt5/plugins/akonadi/config/icaldirconfig.so
 /usr/lib64/qt5/plugins/akonadi/config/kalarmconfig.so
