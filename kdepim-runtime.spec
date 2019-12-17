@@ -6,7 +6,7 @@
 #
 Name     : kdepim-runtime
 Version  : 19.12.0
-Release  : 5
+Release  : 6
 URL      : https://download.kde.org/stable/release-service/19.12.0/src/kdepim-runtime-19.12.0.tar.xz
 Source0  : https://download.kde.org/stable/release-service/19.12.0/src/kdepim-runtime-19.12.0.tar.xz
 Source1  : https://download.kde.org/stable/release-service/19.12.0/src/kdepim-runtime-19.12.0.tar.xz.sig
@@ -29,7 +29,7 @@ BuildRequires : buildreq-kde
 BuildRequires : extra-cmake-modules pkgconfig(libsasl2)
 BuildRequires : extra-cmake-modules shared-mime-info
 BuildRequires : kalarmcal-dev
-BuildRequires : kcalcore-dev
+BuildRequires : kcalendarcore-dev
 BuildRequires : kcalutils-dev
 BuildRequires : kcontacts-dev
 BuildRequires : kdav-dev
@@ -47,8 +47,7 @@ BuildRequires : qtbase-dev mesa-dev
 BuildRequires : qtwebengine-dev
 
 %description
-==== What's this ? ====
-This is an Akonadi resource to access DAV-enabled PIM storages.
+The KDE project kdepim-runtime contains the Akonadi resources from kdepim which can be used without the applications in kdepim.
 
 %package bin
 Summary: bin components for the kdepim-runtime package.
@@ -111,10 +110,9 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1576601861
+export SOURCE_DATE_EPOCH=1576624697
 mkdir -p clr-build
 pushd clr-build
-# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -128,7 +126,7 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1576601861
+export SOURCE_DATE_EPOCH=1576624697
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kdepim-runtime
 cp %{_builddir}/kdepim-runtime-19.12.0/COPYING %{buildroot}/usr/share/package-licenses/kdepim-runtime/7c203dee3a03037da436df03c4b25b659c073976
