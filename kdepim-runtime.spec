@@ -6,7 +6,7 @@
 #
 Name     : kdepim-runtime
 Version  : 19.12.3
-Release  : 9
+Release  : 10
 URL      : https://download.kde.org/stable/release-service/19.12.3/src/kdepim-runtime-19.12.3.tar.xz
 Source0  : https://download.kde.org/stable/release-service/19.12.3/src/kdepim-runtime-19.12.3.tar.xz
 Source1  : https://download.kde.org/stable/release-service/19.12.3/src/kdepim-runtime-19.12.3.tar.xz.sig
