@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : kdepim-runtime
-Version  : 19.12.3
-Release  : 10
-URL      : https://download.kde.org/stable/release-service/19.12.3/src/kdepim-runtime-19.12.3.tar.xz
-Source0  : https://download.kde.org/stable/release-service/19.12.3/src/kdepim-runtime-19.12.3.tar.xz
-Source1  : https://download.kde.org/stable/release-service/19.12.3/src/kdepim-runtime-19.12.3.tar.xz.sig
+Version  : 20.04.0
+Release  : 11
+URL      : https://download.kde.org/stable/release-service/20.04.0/src/kdepim-runtime-20.04.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/20.04.0/src/kdepim-runtime-20.04.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/20.04.0/src/kdepim-runtime-20.04.0.tar.xz.sig
 Summary  : Extends the functionality of kdepim
 Group    : Development/Tools
 License  : AGPL-3.0 BSD-2-Clause GPL-2.0 GPL-3.0 LGPL-2.1 LGPL-3.0
@@ -47,8 +47,7 @@ BuildRequires : qtbase-dev mesa-dev
 BuildRequires : qtwebengine-dev
 
 %description
-==== What's this ? ====
-This is an Akonadi resource to access DAV-enabled PIM storages.
+The KDE project kdepim-runtime contains the Akonadi resources from kdepim which can be used without the applications in kdepim.
 
 %package bin
 Summary: bin components for the kdepim-runtime package.
@@ -103,42 +102,41 @@ locales components for the kdepim-runtime package.
 
 
 %prep
-%setup -q -n kdepim-runtime-19.12.3
-cd %{_builddir}/kdepim-runtime-19.12.3
+%setup -q -n kdepim-runtime-20.04.0
+cd %{_builddir}/kdepim-runtime-20.04.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1583767197
+export SOURCE_DATE_EPOCH=1587698772
 mkdir -p clr-build
 pushd clr-build
-# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
 make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1583767197
+export SOURCE_DATE_EPOCH=1587698772
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kdepim-runtime
-cp %{_builddir}/kdepim-runtime-19.12.3/COPYING %{buildroot}/usr/share/package-licenses/kdepim-runtime/7c203dee3a03037da436df03c4b25b659c073976
-cp %{_builddir}/kdepim-runtime-19.12.3/COPYING.LIB %{buildroot}/usr/share/package-licenses/kdepim-runtime/9a1929f4700d2407c70b507b3b2aaf6226a9543c
-cp %{_builddir}/kdepim-runtime-19.12.3/COPYING.agpl3 %{buildroot}/usr/share/package-licenses/kdepim-runtime/4c665f87b5dc2e7d26279c4b48968d085e1ace32
-cp %{_builddir}/kdepim-runtime-19.12.3/COPYING.gpl3 %{buildroot}/usr/share/package-licenses/kdepim-runtime/31a3d460bb3c7d98845187c716a30db81c44b615
-cp %{_builddir}/kdepim-runtime-19.12.3/resources/kolab/pimkolab/COPYING %{buildroot}/usr/share/package-licenses/kdepim-runtime/8ccafa97d7e7373343b2ce9fd14325720002fd6d
-cp %{_builddir}/kdepim-runtime-19.12.3/resources/kolab/pimkolab/COPYING.LIB %{buildroot}/usr/share/package-licenses/kdepim-runtime/e6ce17111fff24ac88c21978b098b9fffcdee421
-cp %{_builddir}/kdepim-runtime-19.12.3/resources/kolab/pimkolab/COPYING.lgplv3 %{buildroot}/usr/share/package-licenses/kdepim-runtime/f45ee1c765646813b442ca58de72e20a64a7ddba
-cp %{_builddir}/kdepim-runtime-19.12.3/resources/tomboynotes/o2/LICENSE %{buildroot}/usr/share/package-licenses/kdepim-runtime/d1199253fd73ffa134ea99cd70609a908c3bc5b9
+cp %{_builddir}/kdepim-runtime-20.04.0/COPYING %{buildroot}/usr/share/package-licenses/kdepim-runtime/7c203dee3a03037da436df03c4b25b659c073976
+cp %{_builddir}/kdepim-runtime-20.04.0/COPYING.LIB %{buildroot}/usr/share/package-licenses/kdepim-runtime/9a1929f4700d2407c70b507b3b2aaf6226a9543c
+cp %{_builddir}/kdepim-runtime-20.04.0/COPYING.agpl3 %{buildroot}/usr/share/package-licenses/kdepim-runtime/4c665f87b5dc2e7d26279c4b48968d085e1ace32
+cp %{_builddir}/kdepim-runtime-20.04.0/COPYING.gpl3 %{buildroot}/usr/share/package-licenses/kdepim-runtime/31a3d460bb3c7d98845187c716a30db81c44b615
+cp %{_builddir}/kdepim-runtime-20.04.0/resources/kolab/pimkolab/COPYING %{buildroot}/usr/share/package-licenses/kdepim-runtime/8ccafa97d7e7373343b2ce9fd14325720002fd6d
+cp %{_builddir}/kdepim-runtime-20.04.0/resources/kolab/pimkolab/COPYING.LIB %{buildroot}/usr/share/package-licenses/kdepim-runtime/e6ce17111fff24ac88c21978b098b9fffcdee421
+cp %{_builddir}/kdepim-runtime-20.04.0/resources/kolab/pimkolab/COPYING.lgplv3 %{buildroot}/usr/share/package-licenses/kdepim-runtime/f45ee1c765646813b442ca58de72e20a64a7ddba
+cp %{_builddir}/kdepim-runtime-20.04.0/resources/tomboynotes/o2/LICENSE %{buildroot}/usr/share/package-licenses/kdepim-runtime/d1199253fd73ffa134ea99cd70609a908c3bc5b9
 pushd clr-build
 %make_install
 popd
@@ -339,15 +337,15 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libakonadi-filestore.so.5
-/usr/lib64/libakonadi-filestore.so.5.13.3
+/usr/lib64/libakonadi-filestore.so.5.14.0
 /usr/lib64/libakonadi-singlefileresource.so.5
-/usr/lib64/libakonadi-singlefileresource.so.5.13.3
+/usr/lib64/libakonadi-singlefileresource.so.5.14.0
 /usr/lib64/libfolderarchivesettings.so.5
-/usr/lib64/libfolderarchivesettings.so.5.13.3
+/usr/lib64/libfolderarchivesettings.so.5.14.0
 /usr/lib64/libkmindexreader.so.5
-/usr/lib64/libkmindexreader.so.5.13.3
+/usr/lib64/libkmindexreader.so.5.14.0
 /usr/lib64/libmaildir.so.5
-/usr/lib64/libmaildir.so.5.13.3
+/usr/lib64/libmaildir.so.5.14.0
 /usr/lib64/qt5/plugins/akonadi/config/akonotesconfig.so
 /usr/lib64/qt5/plugins/akonadi/config/birthdaysconfig.so
 /usr/lib64/qt5/plugins/akonadi/config/contactsconfig.so
