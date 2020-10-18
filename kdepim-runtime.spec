@@ -6,7 +6,7 @@
 #
 Name     : kdepim-runtime
 Version  : 20.08.2
-Release  : 15
+Release  : 16
 URL      : https://download.kde.org/stable/release-service/20.08.2/src/kdepim-runtime-20.08.2.tar.xz
 Source0  : https://download.kde.org/stable/release-service/20.08.2/src/kdepim-runtime-20.08.2.tar.xz
 Source1  : https://download.kde.org/stable/release-service/20.08.2/src/kdepim-runtime-20.08.2.tar.xz.sig
@@ -125,7 +125,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1602715564
+export SOURCE_DATE_EPOCH=1602990745
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -141,7 +141,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1602715564
+export SOURCE_DATE_EPOCH=1602990745
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kdepim-runtime
 cp %{_builddir}/kdepim-runtime-20.08.2/COPYING %{buildroot}/usr/share/package-licenses/kdepim-runtime/7c203dee3a03037da436df03c4b25b659c073976
@@ -208,6 +208,8 @@ popd
 /usr/bin/akonadi_ical_resource
 /usr/bin/akonadi_icaldir_resource
 /usr/bin/akonadi_imap_resource
+/usr/bin/akonadi_kalarm_dir_resource
+/usr/bin/akonadi_kalarm_resource
 /usr/bin/akonadi_maildir_resource
 /usr/bin/akonadi_maildispatcher_agent
 /usr/bin/akonadi_mbox_resource
@@ -258,6 +260,8 @@ popd
 /usr/share/akonadi/agents/icaldirresource.desktop
 /usr/share/akonadi/agents/icalresource.desktop
 /usr/share/akonadi/agents/imapresource.desktop
+/usr/share/akonadi/agents/kalarmdirresource.desktop
+/usr/share/akonadi/agents/kalarmresource.desktop
 /usr/share/akonadi/agents/maildirresource.desktop
 /usr/share/akonadi/agents/maildispatcheragent.desktop
 /usr/share/akonadi/agents/mboxresource.desktop
@@ -368,6 +372,7 @@ popd
 /usr/lib64/qt5/plugins/akonadi/config/contactsconfig.so
 /usr/lib64/qt5/plugins/akonadi/config/icalconfig.so
 /usr/lib64/qt5/plugins/akonadi/config/icaldirconfig.so
+/usr/lib64/qt5/plugins/akonadi/config/kalarmconfig.so
 /usr/lib64/qt5/plugins/akonadi/config/maildirconfig.so
 /usr/lib64/qt5/plugins/akonadi/config/maildispatcherconfig.so
 /usr/lib64/qt5/plugins/akonadi/config/mboxconfig.so
