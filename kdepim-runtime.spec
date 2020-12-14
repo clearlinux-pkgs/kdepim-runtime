@@ -5,14 +5,14 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : kdepim-runtime
-Version  : 20.08.3
-Release  : 17
-URL      : https://download.kde.org/stable/release-service/20.08.3/src/kdepim-runtime-20.08.3.tar.xz
-Source0  : https://download.kde.org/stable/release-service/20.08.3/src/kdepim-runtime-20.08.3.tar.xz
-Source1  : https://download.kde.org/stable/release-service/20.08.3/src/kdepim-runtime-20.08.3.tar.xz.sig
+Version  : 20.12.0
+Release  : 18
+URL      : https://download.kde.org/stable/release-service/20.12.0/src/kdepim-runtime-20.12.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/20.12.0/src/kdepim-runtime-20.12.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/20.12.0/src/kdepim-runtime-20.12.0.tar.xz.sig
 Summary  : Extends the functionality of kdepim
 Group    : Development/Tools
-License  : AGPL-3.0 BSD-2-Clause GPL-2.0 GPL-3.0 LGPL-2.1 LGPL-3.0
+License  : AGPL-3.0 BSD-2-Clause BSD-3-Clause GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-2.1 LGPL-3.0
 Requires: kdepim-runtime-bin = %{version}-%{release}
 Requires: kdepim-runtime-data = %{version}-%{release}
 Requires: kdepim-runtime-lib = %{version}-%{release}
@@ -29,6 +29,7 @@ BuildRequires : buildreq-kde
 BuildRequires : extra-cmake-modules pkgconfig(libsasl2)
 BuildRequires : extra-cmake-modules shared-mime-info
 BuildRequires : extra-cmake-modules-data
+BuildRequires : grantleetheme-dev
 BuildRequires : kalarmcal-dev
 BuildRequires : kcalendarcore-dev
 BuildRequires : kcalutils-dev
@@ -117,15 +118,15 @@ locales components for the kdepim-runtime package.
 
 
 %prep
-%setup -q -n kdepim-runtime-20.08.3
-cd %{_builddir}/kdepim-runtime-20.08.3
+%setup -q -n kdepim-runtime-20.12.0
+cd %{_builddir}/kdepim-runtime-20.12.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1604623534
+export SOURCE_DATE_EPOCH=1607915810
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -141,17 +142,25 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1604623534
+export SOURCE_DATE_EPOCH=1607915810
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kdepim-runtime
-cp %{_builddir}/kdepim-runtime-20.08.3/COPYING %{buildroot}/usr/share/package-licenses/kdepim-runtime/7c203dee3a03037da436df03c4b25b659c073976
-cp %{_builddir}/kdepim-runtime-20.08.3/COPYING.LIB %{buildroot}/usr/share/package-licenses/kdepim-runtime/9a1929f4700d2407c70b507b3b2aaf6226a9543c
-cp %{_builddir}/kdepim-runtime-20.08.3/COPYING.agpl3 %{buildroot}/usr/share/package-licenses/kdepim-runtime/4c665f87b5dc2e7d26279c4b48968d085e1ace32
-cp %{_builddir}/kdepim-runtime-20.08.3/COPYING.gpl3 %{buildroot}/usr/share/package-licenses/kdepim-runtime/31a3d460bb3c7d98845187c716a30db81c44b615
-cp %{_builddir}/kdepim-runtime-20.08.3/resources/kolab/pimkolab/COPYING %{buildroot}/usr/share/package-licenses/kdepim-runtime/8ccafa97d7e7373343b2ce9fd14325720002fd6d
-cp %{_builddir}/kdepim-runtime-20.08.3/resources/kolab/pimkolab/COPYING.LIB %{buildroot}/usr/share/package-licenses/kdepim-runtime/e6ce17111fff24ac88c21978b098b9fffcdee421
-cp %{_builddir}/kdepim-runtime-20.08.3/resources/kolab/pimkolab/COPYING.lgplv3 %{buildroot}/usr/share/package-licenses/kdepim-runtime/f45ee1c765646813b442ca58de72e20a64a7ddba
-cp %{_builddir}/kdepim-runtime-20.08.3/resources/tomboynotes/o2/LICENSE %{buildroot}/usr/share/package-licenses/kdepim-runtime/d1199253fd73ffa134ea99cd70609a908c3bc5b9
+cp %{_builddir}/kdepim-runtime-20.12.0/LICENSES/AGPL-3.0-or-later.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/971f2a85c02441da0d59ff0790511592a0114532
+cp %{_builddir}/kdepim-runtime-20.12.0/LICENSES/BSD-2-Clause.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/680ed9349d3d12bd39ddd36e8c4bc6b1b0cb1c0e
+cp %{_builddir}/kdepim-runtime-20.12.0/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c
+cp %{_builddir}/kdepim-runtime-20.12.0/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/2a638514c87c4923c0570c55822620fad56f2a33
+cp %{_builddir}/kdepim-runtime-20.12.0/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/e712eadfab0d2357c0f50f599ef35ee0d87534cb
+cp %{_builddir}/kdepim-runtime-20.12.0/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/6091db0aead0d90182b93d3c0d09ba93d188f907
+cp %{_builddir}/kdepim-runtime-20.12.0/LICENSES/GPL-3.0-or-later.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/6091db0aead0d90182b93d3c0d09ba93d188f907
+cp %{_builddir}/kdepim-runtime-20.12.0/LICENSES/LGPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/20079e8f79713dce80ab09774505773c926afa2a
+cp %{_builddir}/kdepim-runtime-20.12.0/LICENSES/LGPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/20079e8f79713dce80ab09774505773c926afa2a
+cp %{_builddir}/kdepim-runtime-20.12.0/LICENSES/LGPL-2.1-or-later.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/6f1f675aa5f6a2bbaa573b8343044b166be28399
+cp %{_builddir}/kdepim-runtime-20.12.0/LICENSES/LGPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/757b86330df80f81143d5916b3e92b4bcb1b1890
+cp %{_builddir}/kdepim-runtime-20.12.0/LICENSES/LGPL-3.0-or-later.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/757b86330df80f81143d5916b3e92b4bcb1b1890
+cp %{_builddir}/kdepim-runtime-20.12.0/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/7d9831e05094ce723947d729c2a46a09d6e90275
+cp %{_builddir}/kdepim-runtime-20.12.0/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/7d9831e05094ce723947d729c2a46a09d6e90275
+cp %{_builddir}/kdepim-runtime-20.12.0/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/e458941548e0864907e654fa2e192844ae90fc32
+cp %{_builddir}/kdepim-runtime-20.12.0/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/e458941548e0864907e654fa2e192844ae90fc32
 pushd clr-build
 %make_install
 popd
@@ -192,6 +201,7 @@ popd
 %find_lang kio_akonadi
 %find_lang kio_pop3
 %find_lang libfolderarchivesettings
+%find_lang akonadi_etesync_resource
 
 %files
 %defattr(-,root,root,-)
@@ -295,6 +305,7 @@ popd
 /usr/share/icons/hicolor/72x72/apps/akonadi-ews.png
 /usr/share/icons/hicolor/96x96/apps/akonadi-ews.png
 /usr/share/knotifications5/akonadi_ews_resource.notifyrc
+/usr/share/knotifications5/akonadi_google_resource.notifyrc
 /usr/share/knotifications5/akonadi_maildispatcher_agent.notifyrc
 /usr/share/knotifications5/akonadi_newmailnotifier_agent.notifyrc
 /usr/share/knotifications5/akonadi_pop3_resource.notifyrc
@@ -358,15 +369,15 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libakonadi-filestore.so.5
-/usr/lib64/libakonadi-filestore.so.5.15.3
+/usr/lib64/libakonadi-filestore.so.5.16.0
 /usr/lib64/libakonadi-singlefileresource.so.5
-/usr/lib64/libakonadi-singlefileresource.so.5.15.3
+/usr/lib64/libakonadi-singlefileresource.so.5.16.0
 /usr/lib64/libfolderarchivesettings.so.5
-/usr/lib64/libfolderarchivesettings.so.5.15.3
+/usr/lib64/libfolderarchivesettings.so.5.16.0
 /usr/lib64/libkmindexreader.so.5
-/usr/lib64/libkmindexreader.so.5.15.3
+/usr/lib64/libkmindexreader.so.5.16.0
 /usr/lib64/libmaildir.so.5
-/usr/lib64/libmaildir.so.5.15.3
+/usr/lib64/libmaildir.so.5.16.0
 /usr/lib64/qt5/plugins/akonadi/config/akonotesconfig.so
 /usr/lib64/qt5/plugins/akonadi/config/birthdaysconfig.so
 /usr/lib64/qt5/plugins/akonadi/config/contactsconfig.so
@@ -390,15 +401,18 @@ popd
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/kdepim-runtime/31a3d460bb3c7d98845187c716a30db81c44b615
-/usr/share/package-licenses/kdepim-runtime/4c665f87b5dc2e7d26279c4b48968d085e1ace32
-/usr/share/package-licenses/kdepim-runtime/7c203dee3a03037da436df03c4b25b659c073976
-/usr/share/package-licenses/kdepim-runtime/8ccafa97d7e7373343b2ce9fd14325720002fd6d
-/usr/share/package-licenses/kdepim-runtime/9a1929f4700d2407c70b507b3b2aaf6226a9543c
-/usr/share/package-licenses/kdepim-runtime/d1199253fd73ffa134ea99cd70609a908c3bc5b9
-/usr/share/package-licenses/kdepim-runtime/e6ce17111fff24ac88c21978b098b9fffcdee421
-/usr/share/package-licenses/kdepim-runtime/f45ee1c765646813b442ca58de72e20a64a7ddba
+/usr/share/package-licenses/kdepim-runtime/20079e8f79713dce80ab09774505773c926afa2a
+/usr/share/package-licenses/kdepim-runtime/2a638514c87c4923c0570c55822620fad56f2a33
+/usr/share/package-licenses/kdepim-runtime/6091db0aead0d90182b93d3c0d09ba93d188f907
+/usr/share/package-licenses/kdepim-runtime/680ed9349d3d12bd39ddd36e8c4bc6b1b0cb1c0e
+/usr/share/package-licenses/kdepim-runtime/6f1f675aa5f6a2bbaa573b8343044b166be28399
+/usr/share/package-licenses/kdepim-runtime/757b86330df80f81143d5916b3e92b4bcb1b1890
+/usr/share/package-licenses/kdepim-runtime/7d9831e05094ce723947d729c2a46a09d6e90275
+/usr/share/package-licenses/kdepim-runtime/971f2a85c02441da0d59ff0790511592a0114532
+/usr/share/package-licenses/kdepim-runtime/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c
+/usr/share/package-licenses/kdepim-runtime/e458941548e0864907e654fa2e192844ae90fc32
+/usr/share/package-licenses/kdepim-runtime/e712eadfab0d2357c0f50f599ef35ee0d87534cb
 
-%files locales -f accountwizard_contacts.lang -f accountwizard_ews.lang -f accountwizard_ical.lang -f accountwizard_imap.lang -f accountwizard_kolab.lang -f accountwizard_mailbox.lang -f accountwizard_maildir.lang -f accountwizard_pop3.lang -f accountwizard_vcard.lang -f accountwizard_vcarddir.lang -f akonadi-filestore.lang -f akonadi_birthdays_resource.lang -f akonadi_contacts_resource.lang -f akonadi_davgroupware_resource.lang -f akonadi_ews_resource.lang -f akonadi_facebook_resource.lang -f akonadi_google_resource.lang -f akonadi_ical_resource.lang -f akonadi_icaldir_resource.lang -f akonadi_imap_resource.lang -f akonadi_kalarm_resource.lang -f akonadi_maildir_resource.lang -f akonadi_maildispatcher_agent.lang -f akonadi_mbox_resource.lang -f akonadi_migration_agent.lang -f akonadi_mixedmaildir_resource.lang -f akonadi_newmailnotifier_agent.lang -f akonadi_openxchange_resource.lang -f akonadi_pop3_resource.lang -f akonadi_singlefile_resource.lang -f akonadi_tomboynotes_resource.lang -f akonadi_vcard_resource.lang -f akonadi_vcarddir_resource.lang -f gid-migrator.lang -f kio_akonadi.lang -f kio_pop3.lang -f libfolderarchivesettings.lang
+%files locales -f accountwizard_contacts.lang -f accountwizard_ews.lang -f accountwizard_ical.lang -f accountwizard_imap.lang -f accountwizard_kolab.lang -f accountwizard_mailbox.lang -f accountwizard_maildir.lang -f accountwizard_pop3.lang -f accountwizard_vcard.lang -f accountwizard_vcarddir.lang -f akonadi-filestore.lang -f akonadi_birthdays_resource.lang -f akonadi_contacts_resource.lang -f akonadi_davgroupware_resource.lang -f akonadi_ews_resource.lang -f akonadi_facebook_resource.lang -f akonadi_google_resource.lang -f akonadi_ical_resource.lang -f akonadi_icaldir_resource.lang -f akonadi_imap_resource.lang -f akonadi_kalarm_resource.lang -f akonadi_maildir_resource.lang -f akonadi_maildispatcher_agent.lang -f akonadi_mbox_resource.lang -f akonadi_migration_agent.lang -f akonadi_mixedmaildir_resource.lang -f akonadi_newmailnotifier_agent.lang -f akonadi_openxchange_resource.lang -f akonadi_pop3_resource.lang -f akonadi_singlefile_resource.lang -f akonadi_tomboynotes_resource.lang -f akonadi_vcard_resource.lang -f akonadi_vcarddir_resource.lang -f gid-migrator.lang -f kio_akonadi.lang -f kio_pop3.lang -f libfolderarchivesettings.lang -f akonadi_etesync_resource.lang
 %defattr(-,root,root,-)
 
