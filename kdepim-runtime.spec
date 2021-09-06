@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : kdepim-runtime
-Version  : 21.04.2
-Release  : 22
-URL      : https://download.kde.org/stable/release-service/21.04.2/src/kdepim-runtime-21.04.2.tar.xz
-Source0  : https://download.kde.org/stable/release-service/21.04.2/src/kdepim-runtime-21.04.2.tar.xz
-Source1  : https://download.kde.org/stable/release-service/21.04.2/src/kdepim-runtime-21.04.2.tar.xz.sig
+Version  : 21.08.1
+Release  : 23
+URL      : https://download.kde.org/stable/release-service/21.08.1/src/kdepim-runtime-21.08.1.tar.xz
+Source0  : https://download.kde.org/stable/release-service/21.08.1/src/kdepim-runtime-21.08.1.tar.xz
+Source1  : https://download.kde.org/stable/release-service/21.08.1/src/kdepim-runtime-21.08.1.tar.xz.sig
 Summary  : Extends the functionality of kdepim
 Group    : Development/Tools
 License  : AGPL-3.0 BSD-2-Clause BSD-3-Clause CC0-1.0 GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-2.1 LGPL-3.0
@@ -59,7 +59,6 @@ BuildRequires : libkgapi-dev
 BuildRequires : libsecret-dev
 BuildRequires : pimcommon-dev
 BuildRequires : qca-qt5-dev
-BuildRequires : qtbase-dev
 BuildRequires : qtbase-dev mesa-dev
 BuildRequires : qtkeychain-dev
 BuildRequires : qtwebengine-dev
@@ -120,51 +119,51 @@ locales components for the kdepim-runtime package.
 
 
 %prep
-%setup -q -n kdepim-runtime-21.04.2
-cd %{_builddir}/kdepim-runtime-21.04.2
+%setup -q -n kdepim-runtime-21.08.1
+cd %{_builddir}/kdepim-runtime-21.08.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1623379392
+export SOURCE_DATE_EPOCH=1630969491
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1623379392
+export SOURCE_DATE_EPOCH=1630969491
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kdepim-runtime
-cp %{_builddir}/kdepim-runtime-21.04.2/CMakePresets.json.license %{buildroot}/usr/share/package-licenses/kdepim-runtime/29fb05b49e12a380545499938c4879440bd8851e
-cp %{_builddir}/kdepim-runtime-21.04.2/LICENSES/AGPL-3.0-or-later.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/971f2a85c02441da0d59ff0790511592a0114532
-cp %{_builddir}/kdepim-runtime-21.04.2/LICENSES/BSD-2-Clause.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/680ed9349d3d12bd39ddd36e8c4bc6b1b0cb1c0e
-cp %{_builddir}/kdepim-runtime-21.04.2/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c
-cp %{_builddir}/kdepim-runtime-21.04.2/LICENSES/CC0-1.0.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/8287b608d3fa40ef401339fd907ca1260c964123
-cp %{_builddir}/kdepim-runtime-21.04.2/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/2a638514c87c4923c0570c55822620fad56f2a33
-cp %{_builddir}/kdepim-runtime-21.04.2/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/e712eadfab0d2357c0f50f599ef35ee0d87534cb
-cp %{_builddir}/kdepim-runtime-21.04.2/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/6091db0aead0d90182b93d3c0d09ba93d188f907
-cp %{_builddir}/kdepim-runtime-21.04.2/LICENSES/GPL-3.0-or-later.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/6091db0aead0d90182b93d3c0d09ba93d188f907
-cp %{_builddir}/kdepim-runtime-21.04.2/LICENSES/LGPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/20079e8f79713dce80ab09774505773c926afa2a
-cp %{_builddir}/kdepim-runtime-21.04.2/LICENSES/LGPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/20079e8f79713dce80ab09774505773c926afa2a
-cp %{_builddir}/kdepim-runtime-21.04.2/LICENSES/LGPL-2.1-or-later.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/6f1f675aa5f6a2bbaa573b8343044b166be28399
-cp %{_builddir}/kdepim-runtime-21.04.2/LICENSES/LGPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/757b86330df80f81143d5916b3e92b4bcb1b1890
-cp %{_builddir}/kdepim-runtime-21.04.2/LICENSES/LGPL-3.0-or-later.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/757b86330df80f81143d5916b3e92b4bcb1b1890
-cp %{_builddir}/kdepim-runtime-21.04.2/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/7d9831e05094ce723947d729c2a46a09d6e90275
-cp %{_builddir}/kdepim-runtime-21.04.2/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/7d9831e05094ce723947d729c2a46a09d6e90275
-cp %{_builddir}/kdepim-runtime-21.04.2/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/e458941548e0864907e654fa2e192844ae90fc32
-cp %{_builddir}/kdepim-runtime-21.04.2/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/e458941548e0864907e654fa2e192844ae90fc32
+cp %{_builddir}/kdepim-runtime-21.08.1/CMakePresets.json.license %{buildroot}/usr/share/package-licenses/kdepim-runtime/29fb05b49e12a380545499938c4879440bd8851e
+cp %{_builddir}/kdepim-runtime-21.08.1/LICENSES/AGPL-3.0-or-later.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/971f2a85c02441da0d59ff0790511592a0114532
+cp %{_builddir}/kdepim-runtime-21.08.1/LICENSES/BSD-2-Clause.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/680ed9349d3d12bd39ddd36e8c4bc6b1b0cb1c0e
+cp %{_builddir}/kdepim-runtime-21.08.1/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c
+cp %{_builddir}/kdepim-runtime-21.08.1/LICENSES/CC0-1.0.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/8287b608d3fa40ef401339fd907ca1260c964123
+cp %{_builddir}/kdepim-runtime-21.08.1/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/2a638514c87c4923c0570c55822620fad56f2a33
+cp %{_builddir}/kdepim-runtime-21.08.1/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/e712eadfab0d2357c0f50f599ef35ee0d87534cb
+cp %{_builddir}/kdepim-runtime-21.08.1/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/6091db0aead0d90182b93d3c0d09ba93d188f907
+cp %{_builddir}/kdepim-runtime-21.08.1/LICENSES/GPL-3.0-or-later.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/6091db0aead0d90182b93d3c0d09ba93d188f907
+cp %{_builddir}/kdepim-runtime-21.08.1/LICENSES/LGPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/20079e8f79713dce80ab09774505773c926afa2a
+cp %{_builddir}/kdepim-runtime-21.08.1/LICENSES/LGPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/20079e8f79713dce80ab09774505773c926afa2a
+cp %{_builddir}/kdepim-runtime-21.08.1/LICENSES/LGPL-2.1-or-later.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/6f1f675aa5f6a2bbaa573b8343044b166be28399
+cp %{_builddir}/kdepim-runtime-21.08.1/LICENSES/LGPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/757b86330df80f81143d5916b3e92b4bcb1b1890
+cp %{_builddir}/kdepim-runtime-21.08.1/LICENSES/LGPL-3.0-or-later.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/757b86330df80f81143d5916b3e92b4bcb1b1890
+cp %{_builddir}/kdepim-runtime-21.08.1/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/7d9831e05094ce723947d729c2a46a09d6e90275
+cp %{_builddir}/kdepim-runtime-21.08.1/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/7d9831e05094ce723947d729c2a46a09d6e90275
+cp %{_builddir}/kdepim-runtime-21.08.1/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/e458941548e0864907e654fa2e192844ae90fc32
+cp %{_builddir}/kdepim-runtime-21.08.1/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/e458941548e0864907e654fa2e192844ae90fc32
 pushd clr-build
 %make_install
 popd
@@ -313,7 +312,6 @@ popd
 /usr/share/knotifications5/akonadi_maildispatcher_agent.notifyrc
 /usr/share/knotifications5/akonadi_newmailnotifier_agent.notifyrc
 /usr/share/knotifications5/akonadi_pop3_resource.notifyrc
-/usr/share/kservices5/akonadi.protocol
 /usr/share/kservices5/akonadi/davgroupware-providers/citadel.desktop
 /usr/share/kservices5/akonadi/davgroupware-providers/davical.desktop
 /usr/share/kservices5/akonadi/davgroupware-providers/egroupware.desktop
@@ -328,8 +326,6 @@ popd
 /usr/share/kservices5/akonadi/davgroupware-providers/zarafa.desktop
 /usr/share/kservices5/akonadi/davgroupware-providers/zimbra.desktop
 /usr/share/kservices5/kcmldap.desktop
-/usr/share/kservices5/pop3.protocol
-/usr/share/kservices5/pop3s.protocol
 /usr/share/kservicetypes5/davgroupwareprovider.desktop
 /usr/share/mime-packages/kdepim-mime.xml
 /usr/share/qlogging-categories5/kdepim-runtime.categories
@@ -373,15 +369,15 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libakonadi-filestore.so.5
-/usr/lib64/libakonadi-filestore.so.5.17.2
+/usr/lib64/libakonadi-filestore.so.5.18.1
 /usr/lib64/libakonadi-singlefileresource.so.5
-/usr/lib64/libakonadi-singlefileresource.so.5.17.2
+/usr/lib64/libakonadi-singlefileresource.so.5.18.1
 /usr/lib64/libfolderarchivesettings.so.5
-/usr/lib64/libfolderarchivesettings.so.5.17.2
+/usr/lib64/libfolderarchivesettings.so.5.18.1
 /usr/lib64/libkmindexreader.so.5
-/usr/lib64/libkmindexreader.so.5.17.2
+/usr/lib64/libkmindexreader.so.5.18.1
 /usr/lib64/libmaildir.so.5
-/usr/lib64/libmaildir.so.5.17.2
+/usr/lib64/libmaildir.so.5.18.1
 /usr/lib64/qt5/plugins/akonadi/config/akonotesconfig.so
 /usr/lib64/qt5/plugins/akonadi/config/birthdaysconfig.so
 /usr/lib64/qt5/plugins/akonadi/config/contactsconfig.so
@@ -399,9 +395,9 @@ popd
 /usr/lib64/qt5/plugins/akonadi/config/tomboynotesconfig.so
 /usr/lib64/qt5/plugins/akonadi/config/vcardconfig.so
 /usr/lib64/qt5/plugins/akonadi/config/vcarddirconfig.so
-/usr/lib64/qt5/plugins/kcm_ldap.so
 /usr/lib64/qt5/plugins/kf5/kio/akonadi.so
 /usr/lib64/qt5/plugins/kf5/kio/pop3.so
+/usr/lib64/qt5/plugins/pim/kcms/kaddressbook/kcm_ldap.so
 
 %files license
 %defattr(0644,root,root,0755)
