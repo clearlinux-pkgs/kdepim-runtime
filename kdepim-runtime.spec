@@ -6,7 +6,7 @@
 #
 Name     : kdepim-runtime
 Version  : 21.12.2
-Release  : 30
+Release  : 31
 URL      : https://download.kde.org/stable/release-service/21.12.2/src/kdepim-runtime-21.12.2.tar.xz
 Source0  : https://download.kde.org/stable/release-service/21.12.2/src/kdepim-runtime-21.12.2.tar.xz
 Source1  : https://download.kde.org/stable/release-service/21.12.2/src/kdepim-runtime-21.12.2.tar.xz.sig
@@ -125,11 +125,15 @@ locales components for the kdepim-runtime package.
 cd %{_builddir}/kdepim-runtime-21.12.2
 
 %build
+## build_prepend content
+# Make sure the package only builds if kalarmcal has been updated first
+sed -i -r -e 's,(KF.?AlarmCalendar \$\{AKONADIKALARM_LIB_VERSION\} CONFIG)(.*\)),\1 REQUIRED \2,' CMakeLists.txt
+## build_prepend end
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1644178715
+export SOURCE_DATE_EPOCH=1645039441
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -145,7 +149,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1644178715
+export SOURCE_DATE_EPOCH=1645039441
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kdepim-runtime
 cp %{_builddir}/kdepim-runtime-21.12.2/CMakePresets.json.license %{buildroot}/usr/share/package-licenses/kdepim-runtime/29fb05b49e12a380545499938c4879440bd8851e
