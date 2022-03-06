@@ -18,6 +18,7 @@ libKF5DAV.so.5
 libKF5I18n.so.5
 libKF5IMAP.so.5
 libKF5IdentityManagement.so.5
+libKF5ItemModels.so.5
 libKF5JobWidgets.so.5
 libKF5KIOCore.so.5
 libKF5KIOWidgets.so.5
@@ -50,6 +51,7 @@ libQt5Widgets.so.5
 libQt5Xml.so.5
 libc.so.6
 libgcc_s.so.1
+libm.so.6
 libqca-qt5.so.2
 libqt5keychain.so.1
 libsasl2.so.3
