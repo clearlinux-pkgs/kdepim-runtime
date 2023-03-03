@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : kdepim-runtime
-Version  : 22.12.2
-Release  : 44
-URL      : https://download.kde.org/stable/release-service/22.12.2/src/kdepim-runtime-22.12.2.tar.xz
-Source0  : https://download.kde.org/stable/release-service/22.12.2/src/kdepim-runtime-22.12.2.tar.xz
-Source1  : https://download.kde.org/stable/release-service/22.12.2/src/kdepim-runtime-22.12.2.tar.xz.sig
+Version  : 22.12.3
+Release  : 45
+URL      : https://download.kde.org/stable/release-service/22.12.3/src/kdepim-runtime-22.12.3.tar.xz
+Source0  : https://download.kde.org/stable/release-service/22.12.3/src/kdepim-runtime-22.12.3.tar.xz
+Source1  : https://download.kde.org/stable/release-service/22.12.3/src/kdepim-runtime-22.12.3.tar.xz.sig
 Summary  : Extends the functionality of kdepim
 Group    : Development/Tools
 License  : AGPL-3.0 BSD-2-Clause BSD-3-Clause CC0-1.0 GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-2.1 LGPL-3.0
@@ -122,8 +122,8 @@ locales components for the kdepim-runtime package.
 
 
 %prep
-%setup -q -n kdepim-runtime-22.12.2
-cd %{_builddir}/kdepim-runtime-22.12.2
+%setup -q -n kdepim-runtime-22.12.3
+cd %{_builddir}/kdepim-runtime-22.12.3
 
 %build
 ## build_prepend content
@@ -134,7 +134,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1676840502
+export SOURCE_DATE_EPOCH=1677805296
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -150,7 +150,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1676840502
+export SOURCE_DATE_EPOCH=1677805296
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kdepim-runtime
 cp %{_builddir}/kdepim-runtime-%{version}/CMakePresets.json.license %{buildroot}/usr/share/package-licenses/kdepim-runtime/c085897bc39e05746ffd2d889a6e84ff1b7ae2d9 || :
@@ -373,15 +373,15 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libakonadi-filestore.so.5
-/usr/lib64/libakonadi-filestore.so.5.22.2
+/usr/lib64/libakonadi-filestore.so.5.22.3
 /usr/lib64/libakonadi-singlefileresource.so.5
-/usr/lib64/libakonadi-singlefileresource.so.5.22.2
+/usr/lib64/libakonadi-singlefileresource.so.5.22.3
 /usr/lib64/libfolderarchivesettings.so.5
-/usr/lib64/libfolderarchivesettings.so.5.22.2
+/usr/lib64/libfolderarchivesettings.so.5.22.3
 /usr/lib64/libkmindexreader.so.5
-/usr/lib64/libkmindexreader.so.5.22.2
+/usr/lib64/libkmindexreader.so.5.22.3
 /usr/lib64/libmaildir.so.5
-/usr/lib64/libmaildir.so.5.22.2
+/usr/lib64/libmaildir.so.5.22.3
 /usr/lib64/qt5/plugins/kf5/kio/akonadi.so
 /usr/lib64/qt5/plugins/pim5/akonadi/config/akonotesconfig.so
 /usr/lib64/qt5/plugins/pim5/akonadi/config/birthdaysconfig.so
