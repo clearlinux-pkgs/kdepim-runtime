@@ -6,7 +6,7 @@
 #
 Name     : kdepim-runtime
 Version  : 22.12.3
-Release  : 45
+Release  : 46
 URL      : https://download.kde.org/stable/release-service/22.12.3/src/kdepim-runtime-22.12.3.tar.xz
 Source0  : https://download.kde.org/stable/release-service/22.12.3/src/kdepim-runtime-22.12.3.tar.xz
 Source1  : https://download.kde.org/stable/release-service/22.12.3/src/kdepim-runtime-22.12.3.tar.xz.sig
