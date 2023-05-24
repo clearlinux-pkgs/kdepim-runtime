@@ -6,11 +6,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : kdepim-runtime
-Version  : 23.04.0
-Release  : 50
-URL      : https://download.kde.org/stable/release-service/23.04.0/src/kdepim-runtime-23.04.0.tar.xz
-Source0  : https://download.kde.org/stable/release-service/23.04.0/src/kdepim-runtime-23.04.0.tar.xz
-Source1  : https://download.kde.org/stable/release-service/23.04.0/src/kdepim-runtime-23.04.0.tar.xz.sig
+Version  : 23.04.1
+Release  : 51
+URL      : https://download.kde.org/stable/release-service/23.04.1/src/kdepim-runtime-23.04.1.tar.xz
+Source0  : https://download.kde.org/stable/release-service/23.04.1/src/kdepim-runtime-23.04.1.tar.xz
+Source1  : https://download.kde.org/stable/release-service/23.04.1/src/kdepim-runtime-23.04.1.tar.xz.sig
 Summary  : Extends the functionality of kdepim
 Group    : Development/Tools
 License  : AGPL-3.0 BSD-2-Clause BSD-3-Clause CC0-1.0 GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-2.1 LGPL-3.0
@@ -112,35 +112,56 @@ locales components for the kdepim-runtime package.
 
 
 %prep
-%setup -q -n kdepim-runtime-23.04.0
-cd %{_builddir}/kdepim-runtime-23.04.0
+%setup -q -n kdepim-runtime-23.04.1
+cd %{_builddir}/kdepim-runtime-23.04.1
 
 %build
 ## build_prepend content
 # Make sure the package only builds if kalarmcal has been updated first
-sed -i -r -e 's,(KF.?AlarmCalendar \$\{AKONADIKALARM_LIB_VERSION\} CONFIG)(.*\)),\1 REQUIRED \2,' CMakeLists.txt
+sed -i -r -e 's,(KF.?AlarmCalendar \$\{AKONADIKALARM_LIB_VERSION\} CONFIG)(.*\)),\1 REQUIRED \2,' CMakeLists.txt || :
 ## build_prepend end
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1682118447
+export SOURCE_DATE_EPOCH=1684943319
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+%cmake ..
+make  %{?_smp_mflags}
+popd
+mkdir -p clr-build-avx2
+pushd clr-build-avx2
+## build_prepend content
+# Make sure the package only builds if kalarmcal has been updated first
+sed -i -r -e 's,(KF.?AlarmCalendar \$\{AKONADIKALARM_LIB_VERSION\} CONFIG)(.*\)),\1 REQUIRED \2,' CMakeLists.txt || :
+## build_prepend end
+export GCC_IGNORE_WERROR=1
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export FCFLAGS="$FFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export FFLAGS="$FFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export CXXFLAGS="$CXXFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export CFLAGS="$CFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export CXXFLAGS="$CXXFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export FFLAGS="$FFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export FCFLAGS="$FCFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1682118447
+export SOURCE_DATE_EPOCH=1684943319
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kdepim-runtime
 cp %{_builddir}/kdepim-runtime-%{version}/LICENSES/AGPL-3.0-or-later.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/971f2a85c02441da0d59ff0790511592a0114532 || :
@@ -160,6 +181,9 @@ cp %{_builddir}/kdepim-runtime-%{version}/LICENSES/LicenseRef-KDE-Accepted-GPL.t
 cp %{_builddir}/kdepim-runtime-%{version}/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/7d9831e05094ce723947d729c2a46a09d6e90275 || :
 cp %{_builddir}/kdepim-runtime-%{version}/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/e458941548e0864907e654fa2e192844ae90fc32 || :
 cp %{_builddir}/kdepim-runtime-%{version}/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/e458941548e0864907e654fa2e192844ae90fc32 || :
+pushd clr-build-avx2
+%make_install_v3  || :
+popd
 pushd clr-build
 %make_install
 popd
@@ -199,12 +223,36 @@ popd
 %find_lang gid-migrator
 %find_lang kio_akonadi
 %find_lang libfolderarchivesettings
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
 
 %files bin
 %defattr(-,root,root,-)
+/V3/usr/bin/akonadi_akonotes_resource
+/V3/usr/bin/akonadi_birthdays_resource
+/V3/usr/bin/akonadi_contacts_resource
+/V3/usr/bin/akonadi_davgroupware_resource
+/V3/usr/bin/akonadi_ews_resource
+/V3/usr/bin/akonadi_ewsmta_resource
+/V3/usr/bin/akonadi_google_resource
+/V3/usr/bin/akonadi_ical_resource
+/V3/usr/bin/akonadi_icaldir_resource
+/V3/usr/bin/akonadi_imap_resource
+/V3/usr/bin/akonadi_maildir_resource
+/V3/usr/bin/akonadi_maildispatcher_agent
+/V3/usr/bin/akonadi_mbox_resource
+/V3/usr/bin/akonadi_migration_agent
+/V3/usr/bin/akonadi_mixedmaildir_resource
+/V3/usr/bin/akonadi_newmailnotifier_agent
+/V3/usr/bin/akonadi_notes_resource
+/V3/usr/bin/akonadi_openxchange_resource
+/V3/usr/bin/akonadi_pop3_resource
+/V3/usr/bin/akonadi_tomboynotes_resource
+/V3/usr/bin/akonadi_vcard_resource
+/V3/usr/bin/akonadi_vcarddir_resource
+/V3/usr/bin/gidmigrator
 /usr/bin/akonadi_akonotes_resource
 /usr/bin/akonadi_birthdays_resource
 /usr/bin/akonadi_contacts_resource
@@ -364,16 +412,44 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
+/V3/usr/lib64/libakonadi-filestore.so.5
+/V3/usr/lib64/libakonadi-filestore.so.5.23.1
+/V3/usr/lib64/libakonadi-singlefileresource.so.5
+/V3/usr/lib64/libakonadi-singlefileresource.so.5.23.1
+/V3/usr/lib64/libfolderarchivesettings.so.5
+/V3/usr/lib64/libfolderarchivesettings.so.5.23.1
+/V3/usr/lib64/libkmindexreader.so.5
+/V3/usr/lib64/libkmindexreader.so.5.23.1
+/V3/usr/lib64/libmaildir.so.5
+/V3/usr/lib64/libmaildir.so.5.23.1
+/V3/usr/lib64/qt5/plugins/kf5/kio/akonadi.so
+/V3/usr/lib64/qt5/plugins/pim5/akonadi/config/akonotesconfig.so
+/V3/usr/lib64/qt5/plugins/pim5/akonadi/config/birthdaysconfig.so
+/V3/usr/lib64/qt5/plugins/pim5/akonadi/config/contactsconfig.so
+/V3/usr/lib64/qt5/plugins/pim5/akonadi/config/icalconfig.so
+/V3/usr/lib64/qt5/plugins/pim5/akonadi/config/icaldirconfig.so
+/V3/usr/lib64/qt5/plugins/pim5/akonadi/config/maildirconfig.so
+/V3/usr/lib64/qt5/plugins/pim5/akonadi/config/maildispatcherconfig.so
+/V3/usr/lib64/qt5/plugins/pim5/akonadi/config/mboxconfig.so
+/V3/usr/lib64/qt5/plugins/pim5/akonadi/config/mixedmaildirconfig.so
+/V3/usr/lib64/qt5/plugins/pim5/akonadi/config/newmailnotifierconfig.so
+/V3/usr/lib64/qt5/plugins/pim5/akonadi/config/notesconfig.so
+/V3/usr/lib64/qt5/plugins/pim5/akonadi/config/openxchangeconfig.so
+/V3/usr/lib64/qt5/plugins/pim5/akonadi/config/pop3config.so
+/V3/usr/lib64/qt5/plugins/pim5/akonadi/config/tomboynotesconfig.so
+/V3/usr/lib64/qt5/plugins/pim5/akonadi/config/vcardconfig.so
+/V3/usr/lib64/qt5/plugins/pim5/akonadi/config/vcarddirconfig.so
+/V3/usr/lib64/qt5/plugins/pim5/kcms/kaddressbook/kcm_ldap.so
 /usr/lib64/libakonadi-filestore.so.5
-/usr/lib64/libakonadi-filestore.so.5.23.0
+/usr/lib64/libakonadi-filestore.so.5.23.1
 /usr/lib64/libakonadi-singlefileresource.so.5
-/usr/lib64/libakonadi-singlefileresource.so.5.23.0
+/usr/lib64/libakonadi-singlefileresource.so.5.23.1
 /usr/lib64/libfolderarchivesettings.so.5
-/usr/lib64/libfolderarchivesettings.so.5.23.0
+/usr/lib64/libfolderarchivesettings.so.5.23.1
 /usr/lib64/libkmindexreader.so.5
-/usr/lib64/libkmindexreader.so.5.23.0
+/usr/lib64/libkmindexreader.so.5.23.1
 /usr/lib64/libmaildir.so.5
-/usr/lib64/libmaildir.so.5.23.0
+/usr/lib64/libmaildir.so.5.23.1
 /usr/lib64/qt5/plugins/kf5/kio/akonadi.so
 /usr/lib64/qt5/plugins/pim5/akonadi/config/akonotesconfig.so
 /usr/lib64/qt5/plugins/pim5/akonadi/config/birthdaysconfig.so

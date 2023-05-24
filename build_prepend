@@ -1,2 +1,2 @@
 # Make sure the package only builds if kalarmcal has been updated first
-sed -i -r -e 's,(KF.?AlarmCalendar \$\{AKONADIKALARM_LIB_VERSION\} CONFIG)(.*\)),\1 REQUIRED \2,' CMakeLists.txt
+sed -i -r -e 's,(KF.?AlarmCalendar \$\{AKONADIKALARM_LIB_VERSION\} CONFIG)(.*\)),\1 REQUIRED \2,' CMakeLists.txt || :
