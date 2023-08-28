@@ -6,11 +6,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : kdepim-runtime
-Version  : 23.04.3
-Release  : 58
-URL      : https://download.kde.org/stable/release-service/23.04.3/src/kdepim-runtime-23.04.3.tar.xz
-Source0  : https://download.kde.org/stable/release-service/23.04.3/src/kdepim-runtime-23.04.3.tar.xz
-Source1  : https://download.kde.org/stable/release-service/23.04.3/src/kdepim-runtime-23.04.3.tar.xz.sig
+Version  : 23.08.0
+Release  : 59
+URL      : https://download.kde.org/stable/release-service/23.08.0/src/kdepim-runtime-23.08.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/23.08.0/src/kdepim-runtime-23.08.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/23.08.0/src/kdepim-runtime-23.08.0.tar.xz.sig
 Summary  : Extends the functionality of kdepim
 Group    : Development/Tools
 License  : AGPL-3.0 BSD-2-Clause BSD-3-Clause CC0-1.0 GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-2.1 LGPL-3.0
@@ -112,8 +112,8 @@ locales components for the kdepim-runtime package.
 
 
 %prep
-%setup -q -n kdepim-runtime-23.04.3
-cd %{_builddir}/kdepim-runtime-23.04.3
+%setup -q -n kdepim-runtime-23.08.0
+cd %{_builddir}/kdepim-runtime-23.08.0
 
 %build
 ## build_prepend content
@@ -124,7 +124,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1689001493
+export SOURCE_DATE_EPOCH=1693240274
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -161,7 +161,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1689001493
+export SOURCE_DATE_EPOCH=1693240274
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kdepim-runtime
 cp %{_builddir}/kdepim-runtime-%{version}/LICENSES/AGPL-3.0-or-later.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/971f2a85c02441da0d59ff0790511592a0114532 || :
@@ -203,7 +203,6 @@ popd
 %find_lang akonadi_davgroupware_resource
 %find_lang akonadi_etesync_resource
 %find_lang akonadi_ews_resource
-%find_lang akonadi_facebook_resource
 %find_lang akonadi_google_resource
 %find_lang akonadi_ical_resource
 %find_lang akonadi_icaldir_resource
@@ -329,9 +328,14 @@ popd
 /usr/share/akonadi/firstrun/defaultaddressbook
 /usr/share/akonadi/firstrun/defaultcalendar
 /usr/share/akonadi/firstrun/defaultnotebook
+/usr/share/applications/org.kde.akonadi_contacts_resource.desktop
 /usr/share/applications/org.kde.akonadi_davgroupware_resource.desktop
+/usr/share/applications/org.kde.akonadi_ews_resource.desktop
 /usr/share/applications/org.kde.akonadi_google_resource.desktop
 /usr/share/applications/org.kde.akonadi_imap_resource.desktop
+/usr/share/applications/org.kde.akonadi_openxchange_resource.desktop
+/usr/share/applications/org.kde.akonadi_vcard_resource.desktop
+/usr/share/applications/org.kde.akonadi_vcarddir_resource.desktop
 /usr/share/dbus-1/interfaces/org.kde.Akonadi.Maildir.Settings.xml
 /usr/share/dbus-1/interfaces/org.kde.Akonadi.MixedMaildir.Settings.xml
 /usr/share/icons/hicolor/128x128/apps/akonadi-ews.png
@@ -412,15 +416,16 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libakonadi-filestore.so.5.23.3
-/V3/usr/lib64/libakonadi-singlefileresource.so.5.23.3
-/V3/usr/lib64/libfolderarchivesettings.so.5.23.3
-/V3/usr/lib64/libkmindexreader.so.5.23.3
-/V3/usr/lib64/libmaildir.so.5.23.3
+/V3/usr/lib64/libakonadi-filestore.so.5.24.0
+/V3/usr/lib64/libakonadi-singlefileresource.so.5.24.0
+/V3/usr/lib64/libfolderarchivesettings.so.5.24.0
+/V3/usr/lib64/libkmindexreader.so.5.24.0
+/V3/usr/lib64/libmaildir.so.5.24.0
 /V3/usr/lib64/qt5/plugins/kf5/kio/akonadi.so
 /V3/usr/lib64/qt5/plugins/pim5/akonadi/config/akonotesconfig.so
 /V3/usr/lib64/qt5/plugins/pim5/akonadi/config/birthdaysconfig.so
 /V3/usr/lib64/qt5/plugins/pim5/akonadi/config/contactsconfig.so
+/V3/usr/lib64/qt5/plugins/pim5/akonadi/config/googleconfig.so
 /V3/usr/lib64/qt5/plugins/pim5/akonadi/config/icalconfig.so
 /V3/usr/lib64/qt5/plugins/pim5/akonadi/config/icaldirconfig.so
 /V3/usr/lib64/qt5/plugins/pim5/akonadi/config/maildirconfig.so
@@ -435,20 +440,22 @@ popd
 /V3/usr/lib64/qt5/plugins/pim5/akonadi/config/vcardconfig.so
 /V3/usr/lib64/qt5/plugins/pim5/akonadi/config/vcarddirconfig.so
 /V3/usr/lib64/qt5/plugins/pim5/kcms/kaddressbook/kcm_ldap.so
+/V3/usr/lib64/qt5/plugins/pim5/mailtransport/mailtransport_akonadiplugin.so
 /usr/lib64/libakonadi-filestore.so.5
-/usr/lib64/libakonadi-filestore.so.5.23.3
+/usr/lib64/libakonadi-filestore.so.5.24.0
 /usr/lib64/libakonadi-singlefileresource.so.5
-/usr/lib64/libakonadi-singlefileresource.so.5.23.3
+/usr/lib64/libakonadi-singlefileresource.so.5.24.0
 /usr/lib64/libfolderarchivesettings.so.5
-/usr/lib64/libfolderarchivesettings.so.5.23.3
+/usr/lib64/libfolderarchivesettings.so.5.24.0
 /usr/lib64/libkmindexreader.so.5
-/usr/lib64/libkmindexreader.so.5.23.3
+/usr/lib64/libkmindexreader.so.5.24.0
 /usr/lib64/libmaildir.so.5
-/usr/lib64/libmaildir.so.5.23.3
+/usr/lib64/libmaildir.so.5.24.0
 /usr/lib64/qt5/plugins/kf5/kio/akonadi.so
 /usr/lib64/qt5/plugins/pim5/akonadi/config/akonotesconfig.so
 /usr/lib64/qt5/plugins/pim5/akonadi/config/birthdaysconfig.so
 /usr/lib64/qt5/plugins/pim5/akonadi/config/contactsconfig.so
+/usr/lib64/qt5/plugins/pim5/akonadi/config/googleconfig.so
 /usr/lib64/qt5/plugins/pim5/akonadi/config/icalconfig.so
 /usr/lib64/qt5/plugins/pim5/akonadi/config/icaldirconfig.so
 /usr/lib64/qt5/plugins/pim5/akonadi/config/maildirconfig.so
@@ -463,6 +470,7 @@ popd
 /usr/lib64/qt5/plugins/pim5/akonadi/config/vcardconfig.so
 /usr/lib64/qt5/plugins/pim5/akonadi/config/vcarddirconfig.so
 /usr/lib64/qt5/plugins/pim5/kcms/kaddressbook/kcm_ldap.so
+/usr/lib64/qt5/plugins/pim5/mailtransport/mailtransport_akonadiplugin.so
 
 %files license
 %defattr(0644,root,root,0755)
@@ -479,6 +487,6 @@ popd
 /usr/share/package-licenses/kdepim-runtime/e458941548e0864907e654fa2e192844ae90fc32
 /usr/share/package-licenses/kdepim-runtime/e712eadfab0d2357c0f50f599ef35ee0d87534cb
 
-%files locales -f accountwizard_contacts.lang -f accountwizard_ews.lang -f accountwizard_ical.lang -f accountwizard_imap.lang -f accountwizard_kolab.lang -f accountwizard_mailbox.lang -f accountwizard_maildir.lang -f accountwizard_pop3.lang -f accountwizard_vcard.lang -f accountwizard_vcarddir.lang -f akonadi-filestore.lang -f akonadi_birthdays_resource.lang -f akonadi_contacts_resource.lang -f akonadi_davgroupware_resource.lang -f akonadi_etesync_resource.lang -f akonadi_ews_resource.lang -f akonadi_facebook_resource.lang -f akonadi_google_resource.lang -f akonadi_ical_resource.lang -f akonadi_icaldir_resource.lang -f akonadi_imap_resource.lang -f akonadi_maildir_resource.lang -f akonadi_maildispatcher_agent.lang -f akonadi_mbox_resource.lang -f akonadi_migration_agent.lang -f akonadi_mixedmaildir_resource.lang -f akonadi_newmailnotifier_agent.lang -f akonadi_openxchange_resource.lang -f akonadi_pop3_resource.lang -f akonadi_singlefile_resource.lang -f akonadi_tomboynotes_resource.lang -f akonadi_vcard_resource.lang -f akonadi_vcarddir_resource.lang -f gid-migrator.lang -f kio_akonadi.lang -f libfolderarchivesettings.lang
+%files locales -f accountwizard_contacts.lang -f accountwizard_ews.lang -f accountwizard_ical.lang -f accountwizard_imap.lang -f accountwizard_kolab.lang -f accountwizard_mailbox.lang -f accountwizard_maildir.lang -f accountwizard_pop3.lang -f accountwizard_vcard.lang -f accountwizard_vcarddir.lang -f akonadi-filestore.lang -f akonadi_birthdays_resource.lang -f akonadi_contacts_resource.lang -f akonadi_davgroupware_resource.lang -f akonadi_etesync_resource.lang -f akonadi_ews_resource.lang -f akonadi_google_resource.lang -f akonadi_ical_resource.lang -f akonadi_icaldir_resource.lang -f akonadi_imap_resource.lang -f akonadi_maildir_resource.lang -f akonadi_maildispatcher_agent.lang -f akonadi_mbox_resource.lang -f akonadi_migration_agent.lang -f akonadi_mixedmaildir_resource.lang -f akonadi_newmailnotifier_agent.lang -f akonadi_openxchange_resource.lang -f akonadi_pop3_resource.lang -f akonadi_singlefile_resource.lang -f akonadi_tomboynotes_resource.lang -f akonadi_vcard_resource.lang -f akonadi_vcarddir_resource.lang -f gid-migrator.lang -f kio_akonadi.lang -f libfolderarchivesettings.lang
 %defattr(-,root,root,-)
 
