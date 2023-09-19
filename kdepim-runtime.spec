@@ -6,11 +6,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : kdepim-runtime
-Version  : 23.08.0
-Release  : 60
-URL      : https://download.kde.org/stable/release-service/23.08.0/src/kdepim-runtime-23.08.0.tar.xz
-Source0  : https://download.kde.org/stable/release-service/23.08.0/src/kdepim-runtime-23.08.0.tar.xz
-Source1  : https://download.kde.org/stable/release-service/23.08.0/src/kdepim-runtime-23.08.0.tar.xz.sig
+Version  : 23.08.1
+Release  : 61
+URL      : https://download.kde.org/stable/release-service/23.08.1/src/kdepim-runtime-23.08.1.tar.xz
+Source0  : https://download.kde.org/stable/release-service/23.08.1/src/kdepim-runtime-23.08.1.tar.xz
+Source1  : https://download.kde.org/stable/release-service/23.08.1/src/kdepim-runtime-23.08.1.tar.xz.sig
 Summary  : Extends the functionality of kdepim
 Group    : Development/Tools
 License  : AGPL-3.0 BSD-2-Clause BSD-3-Clause CC0-1.0 GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-2.1 LGPL-3.0
@@ -112,8 +112,8 @@ locales components for the kdepim-runtime package.
 
 
 %prep
-%setup -q -n kdepim-runtime-23.08.0
-cd %{_builddir}/kdepim-runtime-23.08.0
+%setup -q -n kdepim-runtime-23.08.1
+cd %{_builddir}/kdepim-runtime-23.08.1
 
 %build
 ## build_prepend content
@@ -124,7 +124,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1693240274
+export SOURCE_DATE_EPOCH=1695136392
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -161,7 +161,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1693240274
+export SOURCE_DATE_EPOCH=1695136392
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kdepim-runtime
 cp %{_builddir}/kdepim-runtime-%{version}/LICENSES/AGPL-3.0-or-later.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/971f2a85c02441da0d59ff0790511592a0114532 || :
@@ -416,16 +416,15 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libakonadi-filestore.so.5.24.0
-/V3/usr/lib64/libakonadi-singlefileresource.so.5.24.0
-/V3/usr/lib64/libfolderarchivesettings.so.5.24.0
-/V3/usr/lib64/libkmindexreader.so.5.24.0
-/V3/usr/lib64/libmaildir.so.5.24.0
+/V3/usr/lib64/libakonadi-filestore.so.5.24.1
+/V3/usr/lib64/libakonadi-singlefileresource.so.5.24.1
+/V3/usr/lib64/libfolderarchivesettings.so.5.24.1
+/V3/usr/lib64/libkmindexreader.so.5.24.1
+/V3/usr/lib64/libmaildir.so.5.24.1
 /V3/usr/lib64/qt5/plugins/kf5/kio/akonadi.so
 /V3/usr/lib64/qt5/plugins/pim5/akonadi/config/akonotesconfig.so
 /V3/usr/lib64/qt5/plugins/pim5/akonadi/config/birthdaysconfig.so
 /V3/usr/lib64/qt5/plugins/pim5/akonadi/config/contactsconfig.so
-/V3/usr/lib64/qt5/plugins/pim5/akonadi/config/googleconfig.so
 /V3/usr/lib64/qt5/plugins/pim5/akonadi/config/icalconfig.so
 /V3/usr/lib64/qt5/plugins/pim5/akonadi/config/icaldirconfig.so
 /V3/usr/lib64/qt5/plugins/pim5/akonadi/config/maildirconfig.so
@@ -442,20 +441,19 @@ popd
 /V3/usr/lib64/qt5/plugins/pim5/kcms/kaddressbook/kcm_ldap.so
 /V3/usr/lib64/qt5/plugins/pim5/mailtransport/mailtransport_akonadiplugin.so
 /usr/lib64/libakonadi-filestore.so.5
-/usr/lib64/libakonadi-filestore.so.5.24.0
+/usr/lib64/libakonadi-filestore.so.5.24.1
 /usr/lib64/libakonadi-singlefileresource.so.5
-/usr/lib64/libakonadi-singlefileresource.so.5.24.0
+/usr/lib64/libakonadi-singlefileresource.so.5.24.1
 /usr/lib64/libfolderarchivesettings.so.5
-/usr/lib64/libfolderarchivesettings.so.5.24.0
+/usr/lib64/libfolderarchivesettings.so.5.24.1
 /usr/lib64/libkmindexreader.so.5
-/usr/lib64/libkmindexreader.so.5.24.0
+/usr/lib64/libkmindexreader.so.5.24.1
 /usr/lib64/libmaildir.so.5
-/usr/lib64/libmaildir.so.5.24.0
+/usr/lib64/libmaildir.so.5.24.1
 /usr/lib64/qt5/plugins/kf5/kio/akonadi.so
 /usr/lib64/qt5/plugins/pim5/akonadi/config/akonotesconfig.so
 /usr/lib64/qt5/plugins/pim5/akonadi/config/birthdaysconfig.so
 /usr/lib64/qt5/plugins/pim5/akonadi/config/contactsconfig.so
-/usr/lib64/qt5/plugins/pim5/akonadi/config/googleconfig.so
 /usr/lib64/qt5/plugins/pim5/akonadi/config/icalconfig.so
 /usr/lib64/qt5/plugins/pim5/akonadi/config/icaldirconfig.so
 /usr/lib64/qt5/plugins/pim5/akonadi/config/maildirconfig.so
