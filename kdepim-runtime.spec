@@ -8,11 +8,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : kdepim-runtime
-Version  : 23.08.3
-Release  : 68
-URL      : https://download.kde.org/stable/release-service/23.08.3/src/kdepim-runtime-23.08.3.tar.xz
-Source0  : https://download.kde.org/stable/release-service/23.08.3/src/kdepim-runtime-23.08.3.tar.xz
-Source1  : https://download.kde.org/stable/release-service/23.08.3/src/kdepim-runtime-23.08.3.tar.xz.sig
+Version  : 23.08.4
+Release  : 69
+URL      : https://download.kde.org/stable/release-service/23.08.4/src/kdepim-runtime-23.08.4.tar.xz
+Source0  : https://download.kde.org/stable/release-service/23.08.4/src/kdepim-runtime-23.08.4.tar.xz
+Source1  : https://download.kde.org/stable/release-service/23.08.4/src/kdepim-runtime-23.08.4.tar.xz.sig
 Summary  : Extends the functionality of kdepim
 Group    : Development/Tools
 License  : AGPL-3.0 BSD-2-Clause BSD-3-Clause CC0-1.0 GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-2.1 LGPL-3.0
@@ -114,8 +114,8 @@ locales components for the kdepim-runtime package.
 
 
 %prep
-%setup -q -n kdepim-runtime-23.08.3
-cd %{_builddir}/kdepim-runtime-23.08.3
+%setup -q -n kdepim-runtime-23.08.4
+cd %{_builddir}/kdepim-runtime-23.08.4
 
 %build
 ## build_prepend content
@@ -126,7 +126,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1701984841
+export SOURCE_DATE_EPOCH=1703008125
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -189,7 +189,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1701984841
+export SOURCE_DATE_EPOCH=1703008125
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kdepim-runtime
 cp %{_builddir}/kdepim-runtime-%{version}/LICENSES/AGPL-3.0-or-later.txt %{buildroot}/usr/share/package-licenses/kdepim-runtime/971f2a85c02441da0d59ff0790511592a0114532 || :
@@ -444,11 +444,11 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libakonadi-filestore.so.5.24.3
-/V3/usr/lib64/libakonadi-singlefileresource.so.5.24.3
-/V3/usr/lib64/libfolderarchivesettings.so.5.24.3
-/V3/usr/lib64/libkmindexreader.so.5.24.3
-/V3/usr/lib64/libmaildir.so.5.24.3
+/V3/usr/lib64/libakonadi-filestore.so.5.24.4
+/V3/usr/lib64/libakonadi-singlefileresource.so.5.24.4
+/V3/usr/lib64/libfolderarchivesettings.so.5.24.4
+/V3/usr/lib64/libkmindexreader.so.5.24.4
+/V3/usr/lib64/libmaildir.so.5.24.4
 /V3/usr/lib64/qt5/plugins/kf5/kio/akonadi.so
 /V3/usr/lib64/qt5/plugins/pim5/akonadi/config/akonotesconfig.so
 /V3/usr/lib64/qt5/plugins/pim5/akonadi/config/birthdaysconfig.so
@@ -470,15 +470,15 @@ popd
 /V3/usr/lib64/qt5/plugins/pim5/kcms/kaddressbook/kcm_ldap.so
 /V3/usr/lib64/qt5/plugins/pim5/mailtransport/mailtransport_akonadiplugin.so
 /usr/lib64/libakonadi-filestore.so.5
-/usr/lib64/libakonadi-filestore.so.5.24.3
+/usr/lib64/libakonadi-filestore.so.5.24.4
 /usr/lib64/libakonadi-singlefileresource.so.5
-/usr/lib64/libakonadi-singlefileresource.so.5.24.3
+/usr/lib64/libakonadi-singlefileresource.so.5.24.4
 /usr/lib64/libfolderarchivesettings.so.5
-/usr/lib64/libfolderarchivesettings.so.5.24.3
+/usr/lib64/libfolderarchivesettings.so.5.24.4
 /usr/lib64/libkmindexreader.so.5
-/usr/lib64/libkmindexreader.so.5.24.3
+/usr/lib64/libkmindexreader.so.5.24.4
 /usr/lib64/libmaildir.so.5
-/usr/lib64/libmaildir.so.5.24.3
+/usr/lib64/libmaildir.so.5.24.4
 /usr/lib64/qt5/plugins/kf5/kio/akonadi.so
 /usr/lib64/qt5/plugins/pim5/akonadi/config/akonotesconfig.so
 /usr/lib64/qt5/plugins/pim5/akonadi/config/birthdaysconfig.so
