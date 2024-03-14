@@ -20,5 +20,8 @@ knotifyconfig-dev
 kpimtextedit-dev
 libkgapi-dev
 pimcommon-dev
-qca-qt5-dev
-qtwebengine-dev
+qca-dev
+qt6webengine-dev
+qt6networkauth-dev
+kldap-dev
+qtkeychain-dev
