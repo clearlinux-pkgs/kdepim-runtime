@@ -9,7 +9,7 @@
 #
 Name     : kdepim-runtime
 Version  : 24.02.1
-Release  : 74
+Release  : 75
 URL      : https://download.kde.org/stable/release-service/24.02.1/src/kdepim-runtime-24.02.1.tar.xz
 Source0  : https://download.kde.org/stable/release-service/24.02.1/src/kdepim-runtime-24.02.1.tar.xz
 Source1  : https://download.kde.org/stable/release-service/24.02.1/src/kdepim-runtime-24.02.1.tar.xz.sig
