@@ -9,7 +9,7 @@
 #
 Name     : kdepim-runtime
 Version  : 25.04.1
-Release  : 109
+Release  : 110
 URL      : https://download.kde.org/stable/release-service/25.04.1/src/kdepim-runtime-25.04.1.tar.xz
 Source0  : https://download.kde.org/stable/release-service/25.04.1/src/kdepim-runtime-25.04.1.tar.xz
 Source1  : https://download.kde.org/stable/release-service/25.04.1/src/kdepim-runtime-25.04.1.tar.xz.sig
